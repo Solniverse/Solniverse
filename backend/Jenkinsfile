@@ -1,0 +1,20 @@
+// Using git without checkout
+pipeline {
+  agent any
+  parameters {
+    gitParameter branchFilter: 'origin/back/dev', defaultValue: 'back/dev', name: 'BRANCH', type: 'PT_BRANCH'
+  }
+  stages {
+    stage('clone') {
+      steps {
+        git branch: "${params.BRANCH}", credentialsId: 'github-account', url: 'https://github.com/Solniverse/Solniverse.git'
+      }
+    }
+    stage ('docker build') {
+      steps {
+        sh 'docker-compose down' 
+        sh 'docker-compose up -d --build' 
+      }	
+    } 
+  }
+}
