@@ -13,12 +13,14 @@ import { Route, Routes, useMatch, useNavigate } from "react-router-dom";
 import Other from "pages/nft/Other";
 import CandyMachineHome from "pages/candyMachine/CandyMachineHome";
 import { PublicKey } from "@solana/web3.js";
-import BN from "bn.js";
+// import BN from "bn.js";
+import { useTranslation } from "react-i18next";
 
 function SNVWorld() {
+  const { t } = useTranslation();
   const userInfo = useRecoilValue(userInfoAtom);
   const navigate = useNavigate();
-  const tokenAddress = "9UGMFdqeQbNqu488mKYzsAwBu6P2gLJnsFeQZ29cGSEw";
+  // const tokenAddress = "9UGMFdqeQbNqu488mKYzsAwBu6P2gLJnsFeQZ29cGSEw";
   const [solBalance, setSolBalance] = useState(0);
   const [SNVBalance, setSNVBalance] = useState(0);
   const [USDCBalance, setUSDCBalance] = useState(0);
@@ -112,21 +114,18 @@ function SNVWorld() {
                   />
                 </UserImageWrapper>
                 <UserInfoWrapper>
-                  <Hello>반갑습니다</Hello>
+                  <Hello>{t("snv-welcome1")}</Hello>
                   <UserName>
                     {userInfo.twitch.id
                       ? userInfo.twitch.displayName
-                      : "익명의 솔둥이"}
-                    님
+                      : t("anonymous")}
+                    {t("snv-welcome2")}
                   </UserName>
                 </UserInfoWrapper>
               </UserBox>
-              <RankingBox>
-                <UserName>랭킹표시 할 자리</UserName>
-              </RankingBox>
               <Hr />
               <PointBox>
-                <UserTitle>현재 자산</UserTitle>
+                <UserTitle>{t("snv-balance-title")}</UserTitle>
                 <PointWrapper>
                   <PointInfoWrapper>
                     <PointImage
@@ -214,6 +213,9 @@ const Container = styled.div``;
 const Section = styled.div`
   display: flex;
   padding-top: 12px;
+  @media screen and (max-width: 1000px) {
+    flex-direction: column;
+  }
 `;
 
 const Title = styled.div`
@@ -227,7 +229,7 @@ const Wrapper = styled.div`
   padding: 8px;
   width: 20%;
   height: 100%;
-  @media screen and (max-width: 691px) {
+  @media screen and (max-width: 1000px) {
     margin-bottom: 12px;
     width: 100%;
   }
@@ -246,6 +248,9 @@ const UserWrapper = styled.div`
   border-radius: 16px;
   background-color: ${(props) => props.theme.boxColor};
   box-shadow: 0 7px 14px rgba(0, 0, 0, 0.25), 0 5px 5px rgba(0, 0, 0, 0.22) !important;
+  @media screen and (max-width: 1000px) {
+    width: 100%;
+  }
 `;
 const Hello = styled.div`
   font-size: 14px;
@@ -348,6 +353,10 @@ const Tab = styled.div<{ isActive: boolean }>`
 const NFTWrapper = styled.div`
   width: 80%;
   margin-left: 32px;
+  @media screen and (max-width: 1000px) {
+    margin-left: 0px;
+    width: 100%;
+  }
 `;
 const NFTBox = styled.div`
   display: flex;
