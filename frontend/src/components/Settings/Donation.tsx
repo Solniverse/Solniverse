@@ -32,7 +32,10 @@ function SetDonation() {
       const uuid = await getUuid(newAccessToken);
       setUUID(uuid);
       setIsLoadingUUID(false);
+      return;
     } else {
+      setIsLoadingUUID(false);
+      return;
     }
   };
 
