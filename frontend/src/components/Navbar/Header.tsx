@@ -65,12 +65,16 @@ export default function Header() {
           </Toggle> */}
           <Toggle
             onClick={() => {
-              setIsKo((prev: boolean) => !prev);
-              if (isKo) i18n.changeLanguage("en");
-              else i18n.changeLanguage("ko");
+              if (isKo === "ko") {
+                setIsKo("en-US");
+                i18n.changeLanguage("en");
+              } else {
+                setIsKo("ko");
+                i18n.changeLanguage("ko");
+              }
             }}
           >
-            {isKo ? (
+            {isKo === "ko" ? (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
