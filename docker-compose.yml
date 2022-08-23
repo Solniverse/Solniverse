@@ -1,15 +1,18 @@
-version: '3.7'
+version: "3.7"
 
-services: 
+services:
   frontend:
     image: frontend-react
     build:
       context: frontend/
       dockerfile: Dockerfile
     ports:
-      - "80:80"
-      - "443:443"
+      - "8082:80"
     # [인증서 파일 저장 경로]:/var/www/html
     volumes:
       - /home/ubuntu/docker-volume/ssl2:/var/www/html
       - /home/ubuntu/log:/var/log/nginx
+networks:
+  default:
+    name: ubuntu_default
+    external: true
