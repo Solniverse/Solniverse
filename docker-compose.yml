@@ -1,7 +1,6 @@
-version: '3.7'
+version: "3.7"
 
-services: 
-  
+services:
   backend:
     image: backend-nodejs
     build:
@@ -14,3 +13,9 @@ services:
       - /home/ubuntu/backlog:/usr/app/logs
     container_name: "backend"
     hostname: "backend"
+    expose:
+      - 8081
+networks:
+  default:
+    name: ubuntu_default
+    external: true
