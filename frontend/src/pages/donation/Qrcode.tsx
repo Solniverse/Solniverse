@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import Modal from "react-modal";
-// import { Modal } from "react-responsive-modal";
-import { createQR, encodeURL, parseURL, createTransaction } from "@solana/pay";
+import { createQR, encodeURL, parseURL } from "@solana/pay";
 import { clusterApiUrl, Connection, PublicKey } from "@solana/web3.js";
 import BigNumber from "bignumber.js";
 import QRCodeStyling from "qr-code-styling";
@@ -15,9 +14,7 @@ import { getProvider } from "utils/getProvider";
 import { checkMobile } from "utils/checkMobile";
 import Swal from "sweetalert2";
 import { PIPButton } from "@getpip/react-pip-button";
-// import { createTransaction } from "utils/createTransaction";
-
-// import * as splToken from "@solana/spl-token";
+import { createTransaction } from "utils/createTransaction";
 
 interface IPayment {
   open: any;
@@ -460,7 +457,7 @@ function Qrcode({ open, onClose, params, txid }: IPayment) {
                 </ManualSeries>
                 <ExtensionWrapper>
                   <ExtensionButton onClick={sendTX}>바로결제</ExtensionButton>
-                  <PIPButton
+                  {/* <PIPButton
                     // onClick={() => sendTX()}
                     receiver={params.walletAddress!}
                     amount={params.amount!}
@@ -468,7 +465,7 @@ function Qrcode({ open, onClose, params, txid }: IPayment) {
                     onPayment={() => console.log("결제 성공")}
                     onError={() => console.log("에러남")}
                     onLoad={() => console.log("로드됨")}
-                  />
+                  /> */}
                 </ExtensionWrapper>
               </>
             )}
