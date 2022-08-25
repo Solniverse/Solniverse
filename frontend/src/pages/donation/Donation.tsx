@@ -356,7 +356,7 @@ function Donation() {
         }
       }
     }
-  }, [amount, snvBalance, usdcBalance, userInfo]);
+  }, [userInfo]);
 
   return (
     <Layout>

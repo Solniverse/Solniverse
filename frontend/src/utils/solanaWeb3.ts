@@ -34,6 +34,7 @@ const getBalance = async (walletAddress: string) => {
 
   const lamports = await connection.getBalance(publicKey).catch((err) => {
     console.error(`Error: ${err}`);
+    return 0;
   });
 
   if (lamports) {
